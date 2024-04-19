@@ -1,7 +1,7 @@
 Sub HighlightRows()
     Dim ws1 As Worksheet, ws2 As Worksheet
     Dim dict As Object, lastRow1 As Long, lastRow2 As Long, i As Long
-    Dim colIndex1 As Long, colIndex2 As Long
+    Dim colIndex1 As Long, colIndex2 As Long, dateColIndex As Long
 
     ' Assign worksheets
     Set ws1 = ThisWorkbook.Sheets("Spreadsheet1")
@@ -9,7 +9,10 @@ Sub HighlightRows()
 
     ' Set the column index for comparison (17 for Q, 16 for P, 26 for Z, etc.)
     colIndex1 = 17 ' Column Q in Spreadsheet 1
-    colIndex2 = 17 ' Column Q in Spreadsheet 2, change as necessary
+    colIndex2 = 17 ' Column Q in Spreadsheet 2, adjust as necessary
+
+    ' Set the column index for the date column
+    dateColIndex = 20 ' Example: Column T
 
     ' Create a dictionary
     Set dict = CreateObject("Scripting.Dictionary")
@@ -46,7 +49,7 @@ Sub HighlightRows()
     Next key
 
     ' Call the date checking function after running main comparison
-    Call CheckDates(ws2, 20) ' Change 20 to the actual column index for the date column
+    Call CheckDates(ws2, dateColIndex)
 End Sub
 
 Sub CheckDates(ws As Worksheet, dateCol As Long)
